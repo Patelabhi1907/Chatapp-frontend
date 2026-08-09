@@ -5,7 +5,17 @@ const BASE_URL = 'https://chat-app-backend-production-d779.up.railway.app';
 const api = axios.create({
     baseURL: BASE_URL,
     timeout: 15000,
+    headers: { 'Content-Type': 'application/json' }
 });
+
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.code === 'ECONNABORTED') error.message = 'Request timed out. Check your internet connection.';
+        else if (!error.response) error.message = 'Cannot connect to server. Check your internet connection.';
+        return Promise.reject(error);
+    }
+);
 
 export const registerUser = (username, password) =>
     api.post('/api/auth/register', { username, password }).then((r) => r.data);

@@ -29,7 +29,7 @@ export default function AuthScreen({ onJoin }) {
                 onJoin(username.trim());
             }
         } catch (err) {
-            setError(err.response?.data?.error || 'Something went wrong');
+            setError(err.response?.data?.error || err.message || 'Something went wrong');
         } finally {
             setLoading(false);
         }
