@@ -95,7 +95,7 @@ export default function AuthScreen({ onJoin }) {
 const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', padding: 32 },
     logoContainer: { alignItems: 'center', marginBottom: 32, gap: 12 },
-    logo: { width: 90, height: 90, resizeMode: 'contain' },
+    logo: { width: 90, height: 90, resizeMode: 'contain', borderRadius: 20 },
 
     title: { fontSize: 28, fontWeight: 'bold', color: '#075E54' },
     subtitle: { fontSize: 14, color: '#888', marginBottom: 28 },
