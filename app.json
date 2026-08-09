@@ -15,7 +15,9 @@
         "foregroundImage": "./public/apple.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.chatapp"
+      "package": "com.chatapp",
+      "usesCleartextTraffic": true,
+      "permissions": ["INTERNET", "ACCESS_NETWORK_STATE"]
     },
     "extra": {
       "eas": {
