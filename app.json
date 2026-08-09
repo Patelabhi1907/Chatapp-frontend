@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Chatapp",
+    "slug": "chatapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./public/apple.png",
+    "splash": {
+      "image": "./public/apple.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./public/apple.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.chatapp"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "37165b7a-bb88-4b6d-8302-e6b9bf107a8c"
+      }
+    }
+  }
+}
