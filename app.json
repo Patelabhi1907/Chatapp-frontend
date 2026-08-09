@@ -8,12 +8,12 @@
     "splash": {
       "image": "./public/apple.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#075E54"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./public/apple.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#075E54"
       },
       "package": "com.chatapp",
       "usesCleartextTraffic": true,
