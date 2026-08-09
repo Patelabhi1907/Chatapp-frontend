@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
 
 export default function InputBar({ onSend, onTyping }) {
     const [text, setText] = useState('');
@@ -32,9 +31,7 @@ export default function InputBar({ onSend, onTyping }) {
                 />
             </View>
             <TouchableOpacity style={styles.sendBtn} onPress={handleSend} activeOpacity={0.8}>
-                <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
-                    <Path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="#DAF1DE" />
-                </Svg>
+                <Text style={styles.sendIcon}>➤</Text>
             </TouchableOpacity>
         </View>
     );
@@ -49,4 +46,5 @@ const styles = StyleSheet.create({
     },
     input: { flex: 1, fontSize: 15, color: '#051F20', paddingVertical: 10, maxHeight: 100 },
     sendBtn: { width: 48, height: 48, borderRadius: 24, backgroundColor: '#051F20', justifyContent: 'center', alignItems: 'center', elevation: 3 },
+    sendIcon: { color: '#DAF1DE', fontSize: 20 },
 });
