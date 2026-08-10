@@ -1,5 +1,4 @@
 import { io } from 'socket.io-client';
-import { BASE_URL } from '../api/chatApi';
 
 const SOCKET_URL = 'https://chat-app-backend-kz2x.onrender.com';
 
@@ -8,25 +7,20 @@ let socket = null;
 export function getSocket() {
     if (!socket) {
         socket = io(SOCKET_URL, {
-            transports: ['websocket', 'polling'],
-            forceNew: false,
+            transports: ['polling', 'websocket'],
             reconnection: true,
-            autoConnect: false
+            autoConnect: true,
         });
     }
     return socket;
 }
 
-export function registerUser(userId, callback) {
-    const socket = getSocket();
-    if (socket.connected) {
-        socket.emit('register', userId);
-        if (callback) callback();
+export function registerUser(userId) {
+    const s = getSocket();
+    if (s.connected) {
+        s.emit('register', userId);
     } else {
-        socket.once('connect', () => {
-            socket.emit('register', userId);
-            if (callback) callback();
-        });
+        s.once('connect', () => s.emit('register', userId));
     }
 }
 
