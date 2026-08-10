@@ -1,43 +1,43 @@
-import axios from 'axios';
-
 export const BASE_URL = 'https://chat-app-backend-production-ce3f.up.railway.app';
 
-const api = axios.create({
-  baseURL: BASE_URL,
-  timeout: 30000, // 30 seconds — Railway cold start can take up to 30s
+const request = (method, path, body) => new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, `${BASE_URL}${path}`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.timeout = 30000;
+    xhr.onload = () => {
+        const data = JSON.parse(xhr.responseText);
+        if (xhr.status >= 200 && xhr.status < 300) resolve(data);
+        else reject({ response: { data, status: xhr.status } });
+    };
+    xhr.onerror = () => reject(new Error('Network request failed'));
+    xhr.ontimeout = () => reject(new Error('Request timed out'));
+    xhr.send(body ? JSON.stringify(body) : null);
 });
 
-api.interceptors.response.use(  
-    (response) => response,
-    (error) => {
-        if (error.code === 'ECONNABORTED') error.message = 'Request timed out. Check your internet connection.';
-        else if (!error.response) error.message = 'Cannot connect to server. Check your internet connection.';
-        return Promise.reject(error);
-    }
-);
-
 export const registerUser = (username, password) =>
-    api.post('/api/auth/register', { username, password }).then((r) => r.data);
+    request('POST', '/api/auth/register', { username, password });
 
 export const loginUser = (username, password) =>
-    api.post('/api/auth/login', { username, password }).then((r) => r.data);
+    request('POST', '/api/auth/login', { username, password });
 
 export const fetchMessages = (userId, targetId) =>
-    api.get(`/api/messages/${userId}/${targetId}`).then((r) => r.data);
+    request('GET', `/api/messages/${userId}/${targetId}`);
 
 export const fetchOnlineUsers = () =>
-    api.get('/api/users/online').then((r) => r.data);
+    request('GET', '/api/users/online');
 
 export const fetchAllUsers = () =>
-    api.get('/api/users/all').then((r) => r.data);
+    request('GET', '/api/users/all');
 
 export const fetchUnreadCounts = (userId) =>
-    api.get(`/api/messages/unread/${userId}`).then((r) => r.data);
+    request('GET', `/api/messages/unread/${userId}`);
 
 export const deleteUser = (username) =>
-    api.delete(`/api/users/${username}`).then((r) => r.data);
+    request('DELETE', `/api/users/${username}`);
 
 export const updateLocation = (username, latitude, longitude) =>
-    api.put(`/api/users/${username}/location`, { latitude, longitude }).then((r) => r.data);
+    request('PUT', `/api/users/${username}/location`, { latitude, longitude });
 
-export default api;
+export default { BASE_URL };
