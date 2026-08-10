@@ -17,11 +17,14 @@
       },
       "package": "com.chatapp",
       "usesCleartextTraffic": true,
-      "permissions": ["INTERNET", "ACCESS_NETWORK_STATE"]
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE"
+      ]
     },
     "extra": {
       "eas": {
-        "projectId": "37165b7a-bb88-4b6d-8302-e6b9bf107a8c"
+        "projectId": "f2595c73-d6b2-41ea-874f-d7656d3a7586"
       }
     }
   }

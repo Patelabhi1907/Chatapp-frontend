@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 import { BASE_URL } from '../api/chatApi';
 
-const SOCKET_URL = 'https://chat-app-backend-production-ce3f.up.railway.app';
+const SOCKET_URL = 'https://chat-app-backend-kz2x.onrender.com';
 
 let socket = null;
 

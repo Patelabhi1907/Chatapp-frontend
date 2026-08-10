@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://chat-app-backend-production-ce3f.up.railway.app';
+export const BASE_URL = 'https://chat-app-backend-kz2x.onrender.com';
 
 const request = (method, path, body) => new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
