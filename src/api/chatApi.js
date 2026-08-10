@@ -4,7 +4,7 @@ export const BASE_URL = 'https://chat-app-backend-production-ce3f.up.railway.app
 
 const api = axios.create({
   baseURL: BASE_URL,
-  timeout: 10000, // 10 seconds timeout
+  timeout: 30000, // 30 seconds — Railway cold start can take up to 30s
 });
 
 api.interceptors.response.use(  
