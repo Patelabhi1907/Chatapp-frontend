@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client';
+import { BASE_URL } from '../api/chatApi';
 
 const SOCKET_URL = 'https://chat-app-backend-production-ce3f.up.railway.app';
 
@@ -10,6 +11,7 @@ export function getSocket() {
             transports: ['websocket', 'polling'],
             forceNew: false,
             reconnection: true,
+            autoConnect: false
         });
     }
     return socket;

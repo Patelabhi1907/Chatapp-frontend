@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     View, Text, TextInput, TouchableOpacity,
-    StyleSheet, ActivityIndicator, KeyboardAvoidingView, Platform, Image
+    StyleSheet, ActivityIndicator, KeyboardAvoidingView, Platform, Image, Alert
 } from 'react-native';
 import { registerUser, loginUser } from '../api/chatApi';
 
@@ -28,7 +28,31 @@ export default function AuthScreen({ onJoin }) {
                 onJoin(username.trim());
             }
         } catch (err) {
-            setError(err.response?.data?.error || err.message || 'Something went wrong');
+            console.error('Auth Error:', err.message);
+
+            // EXPLICIT ERROR HANDLING
+            if (!err.response) {
+                // 1. Network Error: The request never reached the backend
+                setError('Network Error');
+                Alert.alert(
+                    'Connection Failed',
+                    'Cannot reach the server. Please check your internet connection or ensure your backend URL is correct.'
+                );
+            } else {
+                // 2. Server Error: The backend received the request but rejected it
+                const status = err.response.status;
+                const serverMessage = err.response.data?.error || err.response.data?.message;
+
+                if (status === 401) {
+                    setError('Invalid username or password.');
+                } else if (status === 404) {
+                    setError('Server route not found. Check your API endpoint.');
+                } else if (status === 400 || status === 409) {
+                    setError(serverMessage || 'Invalid request. Username might be taken.');
+                } else {
+                    setError(serverMessage || `Server Error (${status}). Please try again.`);
+                }
+            }
         } finally {
             setLoading(false);
         }

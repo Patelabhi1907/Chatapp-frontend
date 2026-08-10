@@ -4,16 +4,16 @@
     "slug": "chatapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./public/apple.png",
+    "icon": "./public/apple.svg",
     "splash": {
-      "image": "./public/apple.png",
+      "image": "./public/apple.svg",
       "resizeMode": "contain",
-      "backgroundColor": "#075E54"
+      "backgroundColor": "#ffffff"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./public/apple.png",
-        "backgroundColor": "#075E54"
+        "foregroundImage": "./public/apple.svg",
+        "backgroundColor": "#ffffff"
       },
       "package": "com.chatapp",
       "usesCleartextTraffic": true,

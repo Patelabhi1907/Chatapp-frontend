@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://chat-app-backend-production-ce3f.up.railway.app';
+export const BASE_URL = 'https://chat-app-backend-production-ce3f.up.railway.app';
 
 const api = axios.create({
-    baseURL: BASE_URL,
-    timeout: 15000,
-    headers: { 'Content-Type': 'application/json' }
+  baseURL: BASE_URL,
+  timeout: 10000, // 10 seconds timeout
 });
 
-api.interceptors.response.use(
+api.interceptors.response.use(  
     (response) => response,
     (error) => {
         if (error.code === 'ECONNABORTED') error.message = 'Request timed out. Check your internet connection.';
