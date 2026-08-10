@@ -4,15 +4,15 @@
     "slug": "chatapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./public/apple.svg",
+    "icon": "./public/apple.png",
     "splash": {
-      "image": "./public/apple.svg",
+      "image": "./public/apple.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./public/apple.svg",
+        "foregroundImage": "./public/apple.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.chatapp",
